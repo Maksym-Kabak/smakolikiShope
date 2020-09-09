@@ -5,7 +5,7 @@ import {UserRoleEnum, UserStatusEnum} from '../../constants';
 
 export type UserType = IUser & Document;
 
-export const UserSchema: Schema = new Schema<IUser>({ //todo interfase
+export const UserSchema: Schema = new Schema<IUser>({
   name: {
     type: String,
     required: true
