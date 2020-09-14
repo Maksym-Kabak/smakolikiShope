@@ -1,6 +1,7 @@
 import {NextFunction, Request, Response} from 'express';
 import {userService} from '../../services/user';
 import {customErrors, ErrorHandler} from '../../errors';
+import {ResponseStatusCodesEnum} from '../../constants';
 
 export const checkIsEmailExistsMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void | NextFunction> => {
   const {email} = req.body;
@@ -8,7 +9,7 @@ export const checkIsEmailExistsMiddleware = async (req: Request, res: Response, 
 
   if (userByEmail) {
     return next(new ErrorHandler(
-      400,
+      ResponseStatusCodesEnum.BAD_REQUEST,
       customErrors.BAD_REQUEST_USER_REGISTERED.message,
       customErrors.BAD_REQUEST_USER_REGISTERED.code));
   }

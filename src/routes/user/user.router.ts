@@ -1,9 +1,10 @@
 import {Router} from 'express';
 import {userController} from '../../controller';
-import {checkIsEmailExistsMiddleware} from '../../middleware/user';
+import {checkConfirmTokenMiddleware, checkIsEmailExistsMiddleware} from '../../middleware';
 
 const router = Router();
 
-router.post('/',checkIsEmailExistsMiddleware, userController.createUser);
+router.post('/', checkIsEmailExistsMiddleware, userController.createUser);
+router.post('/confirm', checkConfirmTokenMiddleware, userController.confirmUser);
 
 export const userRouter = router;

@@ -2,12 +2,21 @@ import * as EmailTemplates from 'email-templates';
 import * as nodemailer from 'nodemailer';
 import * as path from 'path';
 
-import {ActionEnum} from '../../constants';
+import {ActionEnum, ResponseStatusCodesEnum} from '../../constants';
 import {config} from '../../config';
-import {htmlTemplate} from '../../email-templates';
+import {htmlTemplates} from '../../email-templates';
 import {ErrorHandler} from '../../errors';
 
-const contextExtention = {
+if (
+  !config.FRONTEND_URL
+  || !config.ROOT_EMAIL_SERVICE
+  || !config.ROOT_EMAIL
+  || !config.ROOT_EMAIL_PASSWORD
+) {
+  throw Error('Root email credentials are not defined!');
+}
+
+const contextExtension = {
   frontendUrl: config.FRONTEND_URL
 };
 
@@ -22,28 +31,29 @@ const transporter = nodemailer.createTransport({
 const emailTemplates = new EmailTemplates({
   message: {},
   views: {
-    root: path.resolve((global as any).appRoot, 'email-templates', 'templates')
+    root: path.resolve(__dirname, '../../', 'email-templates')
   }
 });
 
 export class MailService {
-  async sendEmail(email: string, action: ActionEnum, context: any = {}) {
-    const templateInfo = htmlTemplate[action];
+  async sendEmail(email: string, action: ActionEnum, context: any = {}): Promise<void> {
+    const templateInfo = htmlTemplates[action];
+
     if (!templateInfo) {
-      throw new ErrorHandler(500, 'Template not found');
+      throw new ErrorHandler(ResponseStatusCodesEnum.SERVER, 'Template not found (');
     }
-    Object.assign(context, contextExtention);
+
+    Object.assign(context, contextExtension);
 
     const html = await emailTemplates.render(templateInfo.templateFileName, context);
 
-    const mailOption = {
-      from: `NOREPLY <${config.ROOT_EMAIL}`,
+    await transporter.sendMail({
+      from: `NOREPLY <${config.ROOT_EMAIL}>`,
       to: email,
       subject: templateInfo.subject,
       html
-    };
-    await transporter.sendMail(mailOption);
+    });
   }
 }
 
-export const mailService = new MailService();
+export const emailService = new MailService();
