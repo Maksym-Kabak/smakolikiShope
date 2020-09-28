@@ -1,0 +1,1 @@
+{"version":3,"file":"table-names.enum.js","sourceRoot":"","sources":["../../src/constants/table-names.enum.ts"],"names":[],"mappings":";;;AAAA,IAAY,cAGX;AAHD,WAAY,cAAc;IACxB,+BAAa,CAAA;IACb,gCAAc,CAAA;AAChB,CAAC,EAHW,cAAc,GAAd,sBAAc,KAAd,sBAAc,QAGzB","sourcesContent":["export enum TableNamesEnum {\r\n  LOGS = 'logs',\r\n  USER = 'users'\r\n}\r\n"]}

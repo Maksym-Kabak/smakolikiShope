@@ -2,7 +2,7 @@ import {Types} from 'mongoose';
 
 import {UserModel} from '../../dataBase';
 import {IUser, IUserToken} from '../../models';
-import {ActionEnum} from "../../constants";
+import {ActionEnum} from '../../constants';
 
 class UserService {
   createUser(user: Partial<IUser>): Promise<IUser> {
@@ -11,13 +11,13 @@ class UserService {
     return userToCreate.save();
   }
 
-  addActionToken(id: string, tokenObject: IUserToken): Promise<IUser> {
+  addActionToken(userId: string, tokenObject: IUserToken): Promise<IUser> {
     return UserModel.update(
-      {_id: Types.ObjectId(id)},
+      {_id: Types.ObjectId(userId)},
       {
         $push: {
           tokens: tokenObject
-        } as any
+        }
       }
     ) as any;
   }
@@ -38,6 +38,16 @@ class UserService {
       ]
     }) as any;
   }
+
+  // removeActionToken(action: ActionEnum, token: string): Promise<IUser | null> {
+  //   return UserModel.update({},
+  //     {
+  //       $pull: {
+  //         'tokens.action': action
+  //       }as any
+  //     }) as any;
+  // }
+
 }
 
 export const userService = new UserService();

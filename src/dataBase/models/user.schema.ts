@@ -1,7 +1,7 @@
 import {Document, Model, model, Schema} from 'mongoose';
 
 import {IUser} from '../../models';
-import {UserRoleEnum, UserStatusEnum} from '../../constants';
+import {TableNamesEnum, UserRoleEnum, UserStatusEnum} from '../../constants';
 
 export type UserType = IUser & Document;
 
@@ -54,11 +54,9 @@ export const UserSchema: Schema = new Schema<IUser>({
     required: true,
     default: UserStatusEnum.PENDING
   },
-  tokens: [tokenSubModel],
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  tokens: [tokenSubModel]
+}, {
+  timestamps: true
 });
 
-export const UserModel: Model<any> = model<UserType>('users', UserSchema);
+export const UserModel: Model<UserType> = model<UserType>(TableNamesEnum.USER, UserSchema);
