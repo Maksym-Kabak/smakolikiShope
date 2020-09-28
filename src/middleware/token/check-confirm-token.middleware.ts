@@ -11,9 +11,8 @@ export const checkConfirmTokenMiddleware = async (req: IRequestExtended, res: Re
   if (!token) {
     return next(new ErrorHandler(ResponseStatusCodesEnum.BAD_REQUEST, customErrors.BAD_REQUEST_NO_TOKEN.message));
   }
-  const b = await tokinVerificator(ActionEnum.USER_REGISTER, token);
 
-  console.log(b);
+  await tokinVerificator(ActionEnum.USER_REGISTER, token);
 
   const userByToken = await userService.findUserByActionToken(ActionEnum.USER_REGISTER, token);
 
