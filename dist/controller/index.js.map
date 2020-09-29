@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/controller/index.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,yCAAuB","sourcesContent":["export * from './user';\r\n"]}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/controller/index.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,yCAAuB;AACvB,yCAAuB;AACvB,4CAA0B","sourcesContent":["export * from './auth';\r\nexport * from './user';\r\nexport * from './product';\r\n"]}

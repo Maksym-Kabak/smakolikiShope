@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./action.enum"), exports);
 __exportStar(require("./gender.enum"), exports);
 __exportStar(require("./logs.enum"), exports);
+__exportStar(require("./product-type.enum"), exports);
 __exportStar(require("./regexp.enum"), exports);
 __exportStar(require("./request-headers.enum"), exports);
 __exportStar(require("./response-status-code.enum"), exports);

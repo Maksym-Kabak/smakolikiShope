@@ -1,5 +1,6 @@
 export enum TableNamesEnum {
   LOGS = 'logs',
   PRODUCTS = 'products',
-  USER = 'users'
+  USER = 'users',
+  ACCESS_TOKEN = 'access_tokens'
 }

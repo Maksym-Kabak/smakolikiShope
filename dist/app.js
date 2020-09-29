@@ -10,7 +10,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
 const config_1 = require("./config");
-const user_1 = require("./routes/user");
+const routes_1 = require("./routes");
 const constants_1 = require("./constants");
 dotenv.config();
 const serverRequestLimit = rateLimit({
@@ -59,9 +59,9 @@ class App {
     }
     mountRoutes() {
         // this.app.use('/admin', adminRoter);
-        // this.app.use('/auth', authRoter);
-        // this.app.use('/products', productRoter);
-        this.app.use('/users', user_1.userRouter);
+        this.app.use('/auth', routes_1.authRouter);
+        this.app.use('/products', routes_1.productRouter);
+        this.app.use('/users', routes_1.userRouter);
     }
 }
 exports.app = new App().app;

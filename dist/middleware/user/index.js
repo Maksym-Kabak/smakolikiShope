@@ -10,7 +10,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(require("./check-is-user-confirmed.middleware"), exports);
 __exportStar(require("./check-is-email-exists.middleware"), exports);
-__exportStar(require("./check-is-user-exist.middleware"), exports);
+__exportStar(require("./check-is-user-exist-by-email.middleware"), exports);
 __exportStar(require("./check-is-user-valid.middleware"), exports);
 //# sourceMappingURL=index.js.map

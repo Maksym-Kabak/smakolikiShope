@@ -6,21 +6,26 @@ import {IRequestExtended} from '../../models';
 import {tokinVerificator} from '../../helpers';
 
 export const checkConfirmTokenMiddleware = async (req: IRequestExtended, res: Response, next: NextFunction): Promise<void> => {
-  const token = req.get(RequestHeadersEnum.AUTHORIZATION);
+  try {
 
-  if (!token) {
-    return next(new ErrorHandler(ResponseStatusCodesEnum.BAD_REQUEST, customErrors.BAD_REQUEST_NO_TOKEN.message));
+    const token = req.get(RequestHeadersEnum.AUTHORIZATION);
+
+    if (!token) {
+      return next(new ErrorHandler(ResponseStatusCodesEnum.BAD_REQUEST, customErrors.BAD_REQUEST_NO_TOKEN.message));
+    }
+
+    await tokinVerificator(ActionEnum.USER_REGISTER, token);
+
+    const userByToken = await userService.findUserByActionToken(ActionEnum.USER_REGISTER, token);
+
+    if (!userByToken) {
+      return next(new ErrorHandler(ResponseStatusCodesEnum.NOT_FOUND, customErrors.NOT_FOUND.message));
+    }
+
+    req.user = userByToken;
+
+    next();
+  } catch (e) {
+    next(e);
   }
-
-  await tokinVerificator(ActionEnum.USER_REGISTER, token);
-
-  const userByToken = await userService.findUserByActionToken(ActionEnum.USER_REGISTER, token);
-
-  if (!userByToken) {
-    return next(new ErrorHandler(ResponseStatusCodesEnum.NOT_FOUND, customErrors.NOT_FOUND.message));
-  }
-
-  req.user = userByToken;
-
-  next();
 };
