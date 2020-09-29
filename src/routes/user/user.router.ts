@@ -4,7 +4,7 @@ import {
   checkConfirmTokenMiddleware,
   checkForgotPassTokenMiddleware,
   checkIsEmailExistsMiddleware,
-  checkIsUserExistsMiddleware,
+  checkIsUserExistsByEmailMiddleware,
   checkIsUserValidMiddleware,
   emailValidatorMiddleware,
   singlePasswordValidatorMiddleware
@@ -14,7 +14,17 @@ const router = Router();
 
 router.post('/', checkIsUserValidMiddleware, checkIsEmailExistsMiddleware, userController.createUser);
 router.post('/confirm', checkConfirmTokenMiddleware, userController.confirmUser);
-router.post('/password/forgot', emailValidatorMiddleware, checkIsUserExistsMiddleware, userController.forgotPassword);
-router.post('/password/reset', singlePasswordValidatorMiddleware, checkForgotPassTokenMiddleware, userController.setForgotPass);
+router.post(
+  '/password/forgot',
+  emailValidatorMiddleware,
+  checkIsUserExistsByEmailMiddleware,
+  userController.forgotPassword
+);
+router.post(
+  '/password/reset',
+  singlePasswordValidatorMiddleware,
+  checkForgotPassTokenMiddleware,
+  userController.setForgotPass
+);
 
 export const userRouter = router;

@@ -4,7 +4,7 @@ import {customErrors, ErrorHandler} from '../../errors';
 import {ResponseStatusCodesEnum} from '../../constants';
 import {IRequestExtended} from '../../models';
 
-export const checkIsUserExistsMiddleware =
+export const checkIsUserExistsByEmailMiddleware =
   async (req: IRequestExtended, res: Response, next: NextFunction): Promise<void | NextFunction> => {
     const {email} = req.body;
     const userByEmail = await userService.findOneByParams({email});
