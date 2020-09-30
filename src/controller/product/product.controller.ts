@@ -5,12 +5,16 @@ import {productService} from '../../services';
 
 class ProductController {
   async createProduct(req: IRequestExtended, res: Response, next: NextFunction) {
-    const {_id} = req.user as IUser;
-    const product = req.body;
+    try {
+      const {_id} = req.user as IUser;
+      const product = req.body;
 
-    const newProduct = await productService.createdProduct({...product, userId: _id});
+      const newProduct = await productService.createdProduct({...product, userId: _id});
 
-    res.json(newProduct);
+      res.json(newProduct);
+    } catch (e) {
+      next(e);
+    }
   }
 }
 

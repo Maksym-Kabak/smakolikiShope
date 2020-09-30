@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/middleware/auth/index.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,kEAAgD;AAChD,yEAAuD","sourcesContent":["export * from './check-access-token.middleware';\r\nexport * from './email-password-validation.middelware';\r\n"]}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/middleware/auth/index.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,kEAAgD","sourcesContent":["export * from './check-access-token.middleware';\r\n"]}

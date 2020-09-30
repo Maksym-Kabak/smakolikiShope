@@ -11,5 +11,4 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./check-access-token.middleware"), exports);
-__exportStar(require("./email-password-validation.middelware"), exports);
 //# sourceMappingURL=index.js.map

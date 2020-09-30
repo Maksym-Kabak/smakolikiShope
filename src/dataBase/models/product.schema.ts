@@ -1,7 +1,7 @@
 import {Document, Model, model, Schema} from 'mongoose';
 
 import {IProduct} from '../../models';
-import {TableNamesEnum} from '../../constants';
+import {ProductTypeEnum, TableNamesEnum} from '../../constants';
 
 export type ProductType = IProduct & Document;
 
@@ -16,17 +16,14 @@ export const ProductSchema: Schema = new Schema<IProduct>({
   },
   type: {
     type: String,
-    required: true
+    required: true,
+    enum: Object.values(ProductTypeEnum)
   },
   category: {
     type: String,
     required: true
   },
   price: {
-    type: Number,
-    required: true
-  },
-  rating: {
     type: Number,
     required: true
   },

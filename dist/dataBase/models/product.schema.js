@@ -14,17 +14,14 @@ exports.ProductSchema = new mongoose_1.Schema({
     },
     type: {
         type: String,
-        required: true
+        required: true,
+        enum: Object.values(constants_1.ProductTypeEnum)
     },
     category: {
         type: String,
         required: true
     },
     price: {
-        type: Number,
-        required: true
-    },
-    rating: {
         type: Number,
         required: true
     },

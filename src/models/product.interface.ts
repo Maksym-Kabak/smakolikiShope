@@ -7,7 +7,6 @@ export interface IProduct {
   type: ProductTypeEnum
   category: string;
   price: number;
-  rating: number;
   hasDiscount: boolean;
   oldPrice?: number;
   tags?: string[];

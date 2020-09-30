@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/vallidators/index.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,yCAAuB;AACvB,yCAAuB","sourcesContent":["export * from './auth';\r\nexport * from './user';\r\n"]}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/vallidators/index.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,yCAAuB;AACvB,4CAA0B;AAC1B,yCAAuB","sourcesContent":["export * from './auth';\r\nexport * from './product';\r\nexport * from './user';\r\n"]}

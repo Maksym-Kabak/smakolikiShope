@@ -1,9 +1,12 @@
 import {Router} from 'express';
 import {productController} from '../../controller';
-import {checkAccessTokenMiddleware} from '../../middleware';
+import {checkAccessTokenMiddleware, newProductValidatorMiddleware} from '../../middleware';
 
 const router = Router();
 
-router.post('/', checkAccessTokenMiddleware, productController.createProduct);
+router.post(
+  '/', checkAccessTokenMiddleware,
+  newProductValidatorMiddleware,
+  productController.createProduct);
 
 export const productRouter = router;
